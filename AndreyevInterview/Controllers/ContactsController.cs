@@ -74,34 +74,34 @@ namespace AndreyevInterview.Controllers
             var _contact = await _context.Contacts
                .Include(c => c.Invoices)
                .SingleOrDefaultAsync(m => m.Id == id);
-            var invoices = _context.Invoices.AsEnumerable().Where(x => x.ContactId == _contact.Id);
+            var invoices = _context.Invoices.Where(x => x.ContactId == _contact.Id);
             if (_contact == null)
             {
                 return NotFound("Contact Id does not exist.");
             }
-            //Contacts contact = new Contacts
-            //{
-            //    Id = _contact.Id,
-            //    Name = _contact.FirstName + " " + _contact.LastName,
-            //    NumInvoices = invoices.Count(),
-            //    LastName = _contact.LastName,
-            //    MiddleName = _contact.MiddleName,
-            //    FirstName = _contact.FirstName,
-            //    Email = _contact.Email,
-            //    PhoneNum = _contact.PhoneNum,
-            //    Address = _contact.Address,
-            //    //TotalBillable= invoices.Count()>0? invoices.Sum(x=>x.TotalBillableValue Sum(x => x.),
-            //    //TotalPaid= invoices.Sum(x => x.),
-            //    //EmerName
-            //    //EmerPhoneNum
-            //    //PaymentInfo
-            //    //IDNum
-            //    DOB = _contact.DOB,
-            //    LegalRep = _contact.LegalRep,
-            //    AdditionalNote = _contact.AdditionalNote
-            //};
-            //return contact;
-            return Ok(_contact);
+            var result = new Contacts
+            {
+                Id = _contact.Id,
+                Name = _contact.FirstName + " " + _contact.LastName,
+                NumInvoices = invoices.Count(),
+                LastName = _contact.LastName,
+                MiddleName = _contact.MiddleName,
+                FirstName = _contact.FirstName,
+                Email = _contact.Email,
+                PhoneNum = _contact.PhoneNum,
+                Address = _contact.Address,
+                //TotalBillable= invoices.Count()>0? invoices.Sum(x=>x.TotalBillableValue Sum(x => x.),
+                //TotalPaid= invoices.Sum(x => x.),
+                //EmerName
+                //EmerPhoneNum
+                //PaymentInfo
+                //IDNum
+                DOB = _contact.DOB,
+                LegalRep = _contact.LegalRep,
+                AdditionalNote = _contact.AdditionalNote,
+                InvoiceIds = _contact.Invoices.Select(i => i.Id).ToList()
+            };
+            return Ok(result);
         }
         
         //public LineItemModel GetInvoiceLineItems(int id)

@@ -30,6 +30,6 @@ namespace AndreyevInterview.Models.API
         public DateTime DOB { get; set; }
         public string LegalRep { get; set; }
         public string AdditionalNote { get; set; }
-
+        public List<int> InvoiceIds { get; internal set; }
     }
 }
