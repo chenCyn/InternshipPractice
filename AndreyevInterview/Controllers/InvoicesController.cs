@@ -15,10 +15,12 @@ namespace AndreyevInterview.Controllers
     {
         #region Constractor
         private readonly AIDbContext _context;
+        private readonly IInvoiceServices _invoiceServices;
 
-        public InvoicesController(AIDbContext context)
+        public InvoicesController(AIDbContext context, IInvoiceServices invoiceServices)
         {
             _context = context;
+            _invoiceServices = invoiceServices;
         }
         #endregion
 
@@ -103,11 +105,11 @@ namespace AndreyevInterview.Controllers
 
             if (input.Id == 0)
             {
-                await AddLineItem(lineItem);
+                await _invoiceServices.AddLineItem(lineItem);
             }
             else
             {
-                await UpdateLineItem(lineItem);
+                await _invoiceServices.UpdateLineItem(lineItem);
             }
 
             //_context.Add(lineItem);
@@ -118,53 +120,12 @@ namespace AndreyevInterview.Controllers
         [HttpPut("Update")]
         public async Task<bool> UpdateBillable(LineItemBillable lineItem)
         {
-            return await UpdateLineItem(new LineItem
+            return await _invoiceServices.UpdateLineItem(new LineItem
             {
                 InvoiceId = lineItem.InvoiceId,
                 isBillable = lineItem.isBillable,
                 Id = lineItem.LineItemId
             });
         }
-
-        #region Repositories
-        public async Task<bool> UpdateLineItem(LineItem lineItem)
-        {
-            bool done = false;
-
-            await Task.Run(() =>
-            {
-                LineItem dblineItem = _context.LineItems.Find(lineItem.Id);
-
-                if (dblineItem != null)
-                {
-                    LineItem lt = dblineItem;
-                    lt.isBillable = lineItem.isBillable;
-                    _context.Entry(dblineItem).CurrentValues.SetValues(lt);
-
-                    if (_context.SaveChanges() == 1)
-                    {
-                        done = true;
-                    }
-                }
-            });
-
-            return done;
-        }
-
-        public async Task<bool> AddLineItem(LineItem lineItem)
-        {
-            bool done = false;
-            await Task.Run(() =>
-            {
-                _context.LineItems.Add(lineItem);
-
-                if (_context.SaveChanges() == 1)
-                {
-                    done = true;
-                }
-            });
-            return done;
-        }
-        #endregion
     }
 }

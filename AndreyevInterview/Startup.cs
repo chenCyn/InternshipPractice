@@ -62,8 +62,15 @@ namespace AndreyevInterview
                 app.UseDeveloperExceptionPage();
                 app.UseCors("CorsPolicy");
 
-                app.UseSwagger();
-                app.UseSwaggerUI();
+                app.UseSwagger(options =>
+                {
+                    options.SerializeAsV2 = true;
+                });
+                app.UseSwaggerUI(options =>
+                {
+                    options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+                    options.RoutePrefix = string.Empty;
+                });
             }
 
             app.UseHttpsRedirection();
