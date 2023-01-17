@@ -25,6 +25,11 @@ namespace AndreyevInterview
             modelBuilder.Entity<LineItem>().Property(b => b.Quantity).IsRequired();
             modelBuilder.Entity<LineItem>().Property(b => b.Cost).IsRequired();
             modelBuilder.Entity<LineItem>().Property(b => b.isBillable).IsRequired();
+
+            modelBuilder.Entity<Invoice>()
+            .HasOne(i => i.Contact)
+            .WithMany(c => c.Invoices)
+            .HasForeignKey(i => i.ContactId);
         }
     }
 
@@ -32,7 +37,9 @@ namespace AndreyevInterview
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public Contact Contact { get; set; }
+        public int ContactId { get; set; }
+        public virtual Contact Contact { get; set; }
+
 
     }
 
@@ -59,10 +66,12 @@ namespace AndreyevInterview
         public string Address { get; set; }
         public string EmerName { get; set; }
         public string EmerPhoneNum { get; set; }
-        public string PaymentInfo { get; set; }
-        public string IDNum { get; set; }
+        // public string PaymentInfo { get; set; }
+        // public string IDNum { get; set; }
         public DateTime DOB { get; set; }
         public string LegalRep { get; set; }
         public string AdditionalNote { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
+
     }
 }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\SyntaqQ\\Desktop\\Invoicing-Test-App-main\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj": {}
+    "C:\\Users\\SyntaqQ\\Desktop\\InternshipPractice\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj": {}
   },
   "projects": {
-    "C:\\Users\\SyntaqQ\\Desktop\\Invoicing-Test-App-main\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj": {
+    "C:\\Users\\SyntaqQ\\Desktop\\InternshipPractice\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\SyntaqQ\\Desktop\\Invoicing-Test-App-main\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj",
+        "projectUniqueName": "C:\\Users\\SyntaqQ\\Desktop\\InternshipPractice\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj",
         "projectName": "AndreyevInterview.Test",
-        "projectPath": "C:\\Users\\SyntaqQ\\Desktop\\Invoicing-Test-App-main\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj",
+        "projectPath": "C:\\Users\\SyntaqQ\\Desktop\\InternshipPractice\\AndreyevInterview.Test\\AndreyevInterview.Test.csproj",
         "packagesPath": "C:\\Users\\SyntaqQ\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\SyntaqQ\\Desktop\\Invoicing-Test-App-main\\AndreyevInterview.Test\\obj\\",
+        "outputPath": "C:\\Users\\SyntaqQ\\Desktop\\InternshipPractice\\AndreyevInterview.Test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

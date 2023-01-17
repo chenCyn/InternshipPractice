@@ -3,6 +3,7 @@ using System;
 using AndreyevInterview;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AndreyevInterview.Migrations
 {
     [DbContext(typeof(AIDbContext))]
-    partial class AIDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230117031933_addContact")]
+    partial class addContact
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.1");
@@ -64,7 +67,7 @@ namespace AndreyevInterview.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts", (string)null);
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("AndreyevInterview.Invoice", b =>
@@ -84,7 +87,7 @@ namespace AndreyevInterview.Migrations
 
                     b.HasIndex("ContactId");
 
-                    b.ToTable("Invoices", (string)null);
+                    b.ToTable("Invoices");
                 });
 
             modelBuilder.Entity("AndreyevInterview.LineItem", b =>
@@ -112,7 +115,7 @@ namespace AndreyevInterview.Migrations
 
                     b.HasIndex("InvoiceId");
 
-                    b.ToTable("LineItems", (string)null);
+                    b.ToTable("LineItems");
                 });
 
             modelBuilder.Entity("AndreyevInterview.Invoice", b =>

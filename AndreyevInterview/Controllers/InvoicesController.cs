@@ -39,6 +39,7 @@ namespace AndreyevInterview.Controllers
                 {
                     Id = _invoice.Id,
                     Description = _invoice.Description,
+                    ContactId = _invoice.ContactId,
                     TotalBillableValue = lineItems.Count() > 0 ? lineItems.Where(x => x.isBillable).Sum(x => x.Cost) : 0,
                     TotalNumberLineItems = lineItems.Count(),
                     TotalValue = lineItems.Count() > 0 ? lineItems.Sum(x => x.Cost) : 0
