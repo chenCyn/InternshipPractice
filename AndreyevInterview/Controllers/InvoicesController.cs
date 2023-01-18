@@ -1,10 +1,14 @@
 ﻿#region Namespaces
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using AndreyevInterview.Models.API;
 using AndreyevInterview.Services;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 #endregion
 
 namespace AndreyevInterview.Controllers
@@ -89,6 +93,8 @@ namespace AndreyevInterview.Controllers
         {
             var invoice = new Invoice();
             invoice.Description = input.Description;
+            invoice.ContactId = 1;
+            //invoice.ContactId = input.ContactId;
             _context.Add(invoice);
             _context.SaveChanges();
             return invoice;

@@ -27,33 +27,15 @@ namespace AndreyevInterview
             modelBuilder.Entity<LineItem>().Property(b => b.isBillable).IsRequired();
 
             modelBuilder.Entity<Invoice>()
-            .HasOne(i => i.Contact)
-            .WithMany(c => c.Invoices)
-            .HasForeignKey(i => i.ContactId);
+                .HasOne(i => i.Contact)
+                .WithMany(c => c.Invoices);
+                //.HasForeignKey(i => i.ContactId);
+
+            modelBuilder.Entity<LineItem>()
+                .HasOne(i => i.Invoice)
+                .WithMany(c => c.LineItems);
+                //.HasForeignKey(i => i.InvoiceId);
         }
-    }
-
-    public class Invoice
-    {
-        public int Id { get; set; }
-        public string Description { get; set; }
-        public int ContactId { get; set; }
-        public virtual Contact Contact { get; set; }
-
-
-    }
-
-    public class LineItem
-    {
-        public int Id { get; set; }
-        public int InvoiceId { get; set; }
-        public string Description { get; set; }
-
-        public int Quantity { get; set; }
-        public decimal Cost { get; set; }
-        public bool isBillable { get; set; }
-
-        public Invoice Invoice { get; set; }
     }
     public class Contact
     {
@@ -71,7 +53,36 @@ namespace AndreyevInterview
         public DateTime DOB { get; set; }
         public string LegalRep { get; set; }
         public string AdditionalNote { get; set; }
+
+
         public virtual ICollection<Invoice> Invoices { get; set; }
 
     }
+    public class Invoice
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public int ContactId { get; set; }
+
+
+
+        public virtual Contact Contact { get; set; }
+        public virtual ICollection<LineItem> LineItems { get; set; }
+
+    }
+
+    public class LineItem
+    {
+        public int Id { get; set; }
+        public int InvoiceId { get; set; }
+        public string Description { get; set; }
+
+        public int Quantity { get; set; }
+        public decimal Cost { get; set; }
+        public bool isBillable { get; set; }
+
+
+        public virtual Invoice Invoice { get; set; }
+    }
+    
 }

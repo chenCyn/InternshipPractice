@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AndreyevInterview.Migrations
 {
     [DbContext(typeof(AIDbContext))]
-    [Migration("20230117031933_addContact")]
-    partial class addContact
+    [Migration("20230118014832_contacts")]
+    partial class contacts
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -47,9 +47,6 @@ namespace AndreyevInterview.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("IDNum")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("LastName")
                         .HasColumnType("TEXT");
 
@@ -57,9 +54,6 @@ namespace AndreyevInterview.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("MiddleName")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PaymentInfo")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNum")
@@ -132,7 +126,7 @@ namespace AndreyevInterview.Migrations
             modelBuilder.Entity("AndreyevInterview.LineItem", b =>
                 {
                     b.HasOne("AndreyevInterview.Invoice", "Invoice")
-                        .WithMany()
+                        .WithMany("LineItems")
                         .HasForeignKey("InvoiceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -143,6 +137,11 @@ namespace AndreyevInterview.Migrations
             modelBuilder.Entity("AndreyevInterview.Contact", b =>
                 {
                     b.Navigation("Invoices");
+                });
+
+            modelBuilder.Entity("AndreyevInterview.Invoice", b =>
+                {
+                    b.Navigation("LineItems");
                 });
 #pragma warning restore 612, 618
         }

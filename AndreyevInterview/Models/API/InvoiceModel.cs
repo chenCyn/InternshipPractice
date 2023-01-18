@@ -14,8 +14,7 @@ namespace AndreyevInterview.Models.API
     public class Invoices
     {
         public int Id { get; set; }
-        public int? ContactId { get; set; }
-        public virtual Contact Contacts { get; set; }
+        public int ContactId { get; set; }
         public string Description { get; set; }
         public decimal TotalValue { get; set; }
         public decimal TotalBillableValue { get; set; }

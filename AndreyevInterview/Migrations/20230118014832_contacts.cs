@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace AndreyevInterview.Migrations
 {
     /// <inheritdoc />
-    public partial class addContact : Migration
+    public partial class contacts : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -32,8 +32,6 @@ namespace AndreyevInterview.Migrations
                     Address = table.Column<string>(type: "TEXT", nullable: true),
                     EmerName = table.Column<string>(type: "TEXT", nullable: true),
                     EmerPhoneNum = table.Column<string>(type: "TEXT", nullable: true),
-                    //PaymentInfo = table.Column<string>(type: "TEXT", nullable: true),
-                    //IDNum = table.Column<string>(type: "TEXT", nullable: true),
                     DOB = table.Column<DateTime>(type: "TEXT", nullable: false),
                     LegalRep = table.Column<string>(type: "TEXT", nullable: true),
                     AdditionalNote = table.Column<string>(type: "TEXT", nullable: true)
@@ -48,13 +46,13 @@ namespace AndreyevInterview.Migrations
                 table: "Invoices",
                 column: "ContactId");
 
-            //migrationBuilder.AddForeignKey(
-            //    name: "FK_Invoices_Contacts_ContactId",
-            //    table: "Invoices",
-            //    column: "ContactId",
-            //    principalTable: "Contacts",
-            //    principalColumn: "Id",
-            //    onDelete: ReferentialAction.Cascade);
+            migrationBuilder.AddForeignKey(
+                name: "FK_Invoices_Contacts_ContactId",
+                table: "Invoices",
+                column: "ContactId",
+                principalTable: "Contacts",
+                principalColumn: "Id",
+                onUpdate: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
