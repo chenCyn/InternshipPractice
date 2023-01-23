@@ -8,7 +8,7 @@
 
     <hr />
 
-     <table>
+    <table>
       <thead>
         <th>ID</th>
         <th>Description</th>
@@ -18,16 +18,16 @@
       </thead>
       <tbody>
         <tr v-for="invoice in state.invoices" :key="invoice.id">
-          <td>{{invoice.id}}</td>
-          <td>{{invoice.description}}</td>
+          <td>{{ invoice.id }}</td>
+          <td>{{ invoice.description }}</td>
           <td>
-            <router-link :to="{ name: 'Invoice', params: { id: invoice.id }}">
+            <router-link :to="{ name: 'Invoice', params: { id: invoice.id } }">
               Open
             </router-link>
           </td>
-           <td>{{invoice.totalValue}}</td>
-          <td>{{invoice.totalBillableValue}}</td>
-          
+          <td>{{ invoice.totalValue }}</td>
+          <td>{{ invoice.totalBillableValue }}</td>
+
         </tr>
       </tbody>
     </table>
@@ -71,7 +71,7 @@ export default defineComponent({
 
     onMounted(fetchInvoices)
 
-    return {state, createInvoice}
+    return { state, createInvoice }
   }
 });
 </script>
