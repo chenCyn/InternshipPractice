@@ -94,7 +94,7 @@ namespace AndreyevInterview.Controllers
             var invoice = new Invoice();
             invoice.Description = input.Description;
             invoice.ContactId = 1;
-            //invoice.ContactId = input.ContactId;
+            invoice.ContactId = input.ContactId;
             _context.Add(invoice);
             _context.SaveChanges();
             return invoice;

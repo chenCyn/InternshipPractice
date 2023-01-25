@@ -1,17 +1,23 @@
 import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
 import './style.css'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import App from './App.vue'
-import router from './router'
+import Invoices from './components/Invoices.vue'
+import Invoice from './components/Invoice.vue'
+// import router from './router'
 
-const app = createApp(App)
+const router = createRouter({
+    // history: createWebHistory(process.env.BASE_URL),
+    history: createWebHistory(),
+    routes: [
+        { path: '/', name: 'MainPage', component: Invoices },
+        { path: '/:id', name: 'Invoice', component: Invoice, props: true }
+    ]
+})
 
-app.use(router)
-app.use(ElementPlus)
-app.mount('#app')
-
-// createApp(App)
-//     .use(router)
-//     .use(ElementPlus)
-//     .mount('#app')
+createApp(App)
+    .use(router)
+    .use(ElementPlus)
+    .mount('#app')
