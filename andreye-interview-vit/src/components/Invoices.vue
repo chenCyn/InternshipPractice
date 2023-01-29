@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <title>MainPage</title>
-    
+
     <div class="create contact">
       <el-button type="primary" @click="dialogFormVisible = true">
         Create New Contact
@@ -81,59 +81,30 @@
 
     <div class="invoiceTable">
       <el-table :data="state.invoices" style="width: 100%" height="250">
-        <!-- <el-table-column fixed="left" label="id">
-          <template #default="scope">
-            <tbody>
-              <tr v-for="invoice in state.invoices" :key="invoice.id">
-                <td>
-                  <router-link :to="{ name: 'Invoice', params: { id: invoice.id } }">
-                    {{ invoice.id }}
-                  </router-link>
-                </td>
-              </tr>
-            </tbody>
+        <!-- <el-table-column fixed prop="id" label="id" width="150" /> -->
+        <el-table-column label="Id">
+          <template v-slot:default="{row}">
+            <routerLink :to="'/' + row.id">{{ row.id }}</routerLink>
           </template>
-        </el-table-column> -->
-        <el-table-column fixed prop="id" label="id"  width="150"/>
-        <el-table-column prop="description" label="description"  width="150"/>
-        <el-table-column prop="totalValue" label="totalValue"  width="150"/>
-        <el-table-column prop="totalBillableValue" label="totalBillableValue"  width="150"/>
-        <el-table-column prop="contactId" label="contactId"  width="150"/>
-        <!-- <el-table-column label="Actions">
-          <template slot="row" scope="props">
-            <router-link :to="'/' + data.id">Link</router-link>
-          </template>
-        </el-table-column> -->
+        </el-table-column>
+        <el-table-column prop="description" label="description" width="150" />
+        <el-table-column prop="totalValue" label="totalValue" width="150" />
+        <el-table-column prop="totalBillableValue" label="totalBillableValue" width="150" />
+        <el-table-column prop="contactId" label="contactId" width="150" />
       </el-table>
-      <!-- <thead>
-          <th>ID</th>
-          <th>Description</th>
-          <th>Total value</th>
-          <th>Total Billed Amount</th>
-          <th>ContactId</th>
-        </thead>
-        <tbody>
-          <tr v-for="invoice in state.invoices" :key="invoice.id">
-            <td>
-              <router-link :to="{ name: 'Invoice', params: { id: invoice.id } }">
-                {{ invoice.id }}
-              </router-link>
-            </td>
-            <td>{{ invoice.description }}</td>
-            <td>{{ invoice.totalValue }}</td>
-            <td>{{ invoice.totalBillableValue }}</td>
-            <td>{{ invoice.contactId }}</td>
-          </tr>
-        </tbody> -->
     </div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent, onMounted, reactive, ref } from 'vue';
+import { RouterLink } from 'vue-router';
 // @ is an alias to /src
 
 export default defineComponent({
+  components: {
+    RouterLink
+  },
   name: 'Invoices',
   setup() {
     const state = reactive({
